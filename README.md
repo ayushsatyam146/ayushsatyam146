@@ -9,7 +9,9 @@
 
 
 ![](https://github-readme-stats.vercel.app/api?username=ayushsatyam146&show_icons=true)
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=ayushsatyam146)](https://github.com/ayushsatyam146/github-readme-stats)
+
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=ayushsatyam146&layout=compact)](https://github.com/ayushsatyam146/github-readme-stats)
 <!--
 **ayushsatyam146/ayushsatyam146** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 ![My github stats](https://github-readme-stats.vercel.app/api?username=ayushsatyam146&show_icons=true)
