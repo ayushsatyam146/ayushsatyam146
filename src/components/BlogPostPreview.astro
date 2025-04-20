@@ -18,14 +18,18 @@ const excerpt = remarkPluginFrontmatter.excerpt || post.body.slice(0, 150) + '..
 ---
 
 <div class="post">
-  <div class="post-title">- {title}</div>
-  <div class="post-date">📅 {formattedDate}</div>
-  <div class="post-content">
-    {excerpt}
-  </div>
-  <div class="post-link">
-    cat {fileName} <span class="arrow">→</span>
-    <a href={`/blog/${post.slug}`} class="read-link">Read</a>
+  <div class="post-content-wrapper">
+    <div class="post-title">
+      <a href={`/blog/${post.slug}`} class="title-link">- {title}</a>
+    </div>
+    <div class="post-date">📅 {formattedDate}</div>
+    <div class="post-content">
+      {excerpt}
+    </div>
+    <div class="post-link">
+      cat {fileName} <span class="arrow">→</span>
+      <a href={`/blog/${post.slug}`} class="read-link">Read</a>
+    </div>
   </div>
 </div>
 
@@ -34,15 +38,35 @@ const excerpt = remarkPluginFrontmatter.excerpt || post.body.slice(0, 150) + '..
     margin-bottom: 30px;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 20px;
+    position: relative;
   }
   
   .post:last-child {
     border-bottom: none;
   }
   
+  .post-content-wrapper {
+    position: relative;
+    padding-left: 10px;
+    border-left: 1px solid var(--terminal-green);
+    opacity: 0.8;
+  }
+  
   .post-title {
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    font-size: 1.35rem;
+    line-height: 1.3;
+  }
+  
+  .title-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .title-link:hover {
+    color: var(--terminal-green);
   }
   
   .post-date {
@@ -73,10 +97,19 @@ const excerpt = remarkPluginFrontmatter.excerpt || post.body.slice(0, 150) + '..
   }
   
   .read-link {
-    background-color: var(--highlight-bg);
+    background-color: rgba(12, 143, 32, 0.8);
     padding: 2px 8px;
     border-radius: 3px;
-    font-size: 0.85em;
-    color: var(--text-color);
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #fff;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  
+  .read-link:hover {
+    background-color: var(--terminal-blue);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
   }
 </style>
