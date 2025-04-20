@@ -11,6 +11,19 @@ interface Props {
 }
 
 const { title, description = "A terminal-styled developer blog" } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+// Determine the path display based on current URL
+let pathDisplay = '~/blog';
+if (currentPath.startsWith('/ping')) {
+  pathDisplay = '~/ping';
+} else if (currentPath === '/') {
+  pathDisplay = '~';
+} else if (currentPath.startsWith('/whoami')) {
+  pathDisplay = '~/whoami';
+} else if (currentPath.startsWith('/random')) {
+  pathDisplay = '~/random';
+}
 ---
 
 <!DOCTYPE html>
@@ -26,7 +39,7 @@ const { title, description = "A terminal-styled developer blog" } = Astro.props;
     <Header />
     <main class="container">
       <div class="content">
-        <div class="blog-title">~/blog</div>
+        <div class="blog-title">{pathDisplay}</div>
         <slot />
       </div>
     </main>

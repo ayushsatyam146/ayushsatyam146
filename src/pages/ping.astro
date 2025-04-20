@@ -3,91 +3,176 @@ import MainLayout from '../layouts/MainLayout.astro';
 import CommandPrompt from '../components/CommandPrompt.astro';
 ---
 
-<MainLayout title="About | Terminal Blog" description="About me and this blog">
-  <CommandPrompt command="cat about.md" />
+<MainLayout title="Ping | Terminal Blog" description="Get in touch with me">
+  <div class="terminal-path">~/ping</div>
   
-  <div class="about-page">
-    <h1>About This Blog</h1>
+  <div class="ping-container">
+    <CommandPrompt command="ping --help" />
     
-    <div class="about-section">
-      <h2>$ whoami</h2>
+    <div class="terminal-output">
       <p>
-       PINGggggggg
+        Usage: ping [options] target
       </p>
       <p>
-        My tech stack includes Golang, Rust, TypeScript, and various database technologies. I enjoy solving complex problems
-        and sharing what I learn along the way.
+        Send a message to get in touch. I'm always interested in collaborating on
+        projects, consulting opportunities, or just having a great conversation about technology.
       </p>
     </div>
     
-    <div class="about-section">
-      <h2>$ why-this-blog</h2>
-      <p>
-        This blog serves as a platform for me to document my learnings, experiments, and thoughts about software engineering.
-        Writing helps me clarify my thinking and hopefully provides value to others in the community.
+    <!-- Method 1: Google Forms with page redirect (most reliable) -->
+    <form class="contact-form" id="contact-form" action="https://docs.google.com/forms/d/e/1FAIpQLScURX5IghOM1aTyMLSNLtHZBLTK2_INDpH08UbqZxtwq6k-1w/formResponse" method="POST">
+      <div class="form-group">
+        <CommandPrompt command="echo $NAME" />
+        <input type="text" id="name" name="entry.1959524463" placeholder="Your Name" required>
+      </div>
+      
+      <div class="form-group">
+        <CommandPrompt command="echo $EMAIL" />
+        <input type="email" id="email" name="entry.21383773" placeholder="your@email.com" required>
+      </div>
+      
+      <div class="form-group">
+        <CommandPrompt command="echo $MESSAGE | cat" />
+        <textarea id="message" name="entry.297866520" rows="6" placeholder="Type your message here..." required></textarea>
+      </div>
+      
+      <button type="submit" class="submit-btn">Send Message</button>
+      <p class="form-note">
+        <small>Note: After submitting, you'll be redirected to Google Forms. Click "Back" to return to this site.</small>
       </p>
-      <p>
-        The terminal theme is a nod to where many of us developers spend a significant amount of our time.
-        It's built with Astro and designed to be fast, accessible, and content-focused.
-      </p>
-    </div>
+    </form>
     
-    <div class="about-section">
-      <h2>$ contact</h2>
-      <p>
-        Feel free to reach out to me through any of the following channels:
-      </p>
-      <ul class="contact-list">
-        <li><span class="contact-label">Email:</span> example@example.com</li>
-        <li><span class="contact-label">GitHub:</span> <a href="https://github.com/yourusername" target="_blank" rel="noopener">@yourusername</a></li>
-        <li><span class="contact-label">Twitter:</span> <a href="https://twitter.com/yourusername" target="_blank" rel="noopener">@yourusername</a></li>
-      </ul>
+    <!-- Alternate Method: Direct messaging links -->
+    <CommandPrompt command="ping --alt-routes" />
+    
+    <div class="alt-routes">
+      <div class="route">
+        <span class="route-arrow">→</span>
+        <span class="route-name">GitHub:</span>
+        <a href="https://github.com/ayushsatyam146" target="_blank" rel="noopener">ayushsatyam146</a>
+      </div>
+      
+      <div class="route">
+        <span class="route-arrow">→</span>
+        <span class="route-name">LinkedIn:</span>
+        <a href="https://linkedin.com/in/ayushsatyam146" target="_blank" rel="noopener">/in/ayushsatyam146</a>
+      </div>
+      
+      <div class="route">
+        <span class="route-arrow">→</span>
+        <span class="route-name">Twitter:</span>
+        <a href="https://x.com/ayushsatyam146" target="_blank" rel="noopener">ayushsatyam146</a>
+      </div>
+      
+      <div class="route">
+        <span class="route-arrow">→</span>
+        <span class="route-name">Email:</span>
+        <a href="mailto:ayushsatyam146@gmail.com">ayushsatyam146@gmail.com</a>
+      </div>
     </div>
   </div>
 </MainLayout>
 
 <style>
-  .about-page {
+  .terminal-path {
+    color: var(--terminal-green);
+    margin-bottom: 15px;
+    font-family: 'Fira Code', monospace;
+    font-weight: bold;
+  }
+  
+  .ping-container {
     max-width: 700px;
     margin: 0 auto;
   }
   
-  h1 {
-    color: var(--terminal-green);
-    font-size: 1.8rem;
-    margin-bottom: 30px;
+  .terminal-output {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-left: 1px solid var(--terminal-green);
+    padding: 10px 15px;
+    margin: 10px 0 20px 0;
+    border-radius: 4px;
+    opacity: 0.9;
   }
   
-  .about-section {
-    margin-bottom: 40px;
-  }
-  
-  h2 {
-    color: var(--terminal-purple);
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-    font-weight: normal;
-  }
-  
-  p {
-    margin-bottom: 15px;
-    line-height: 1.6;
-  }
-  
-  .contact-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .contact-list li {
+  .terminal-output p {
     margin-bottom: 10px;
-    padding: 5px 0;
+    line-height: 1.5;
   }
   
-  .contact-label {
-    display: inline-block;
-    min-width: 70px;
+  .contact-form {
+    margin: 30px 0;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  input, textarea {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-color);
+    font-family: 'Fira Code', monospace;
+  }
+  
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--terminal-green);
+    box-shadow: 0 0 0 1px var(--terminal-green);
+  }
+  
+  .submit-btn {
+    background-color: rgba(12, 143, 32, 0.8);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Fira Code', monospace;
+    transition: all 0.2s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: var(--terminal-blue);
+    transform: translateY(-1px);
+  }
+  
+  .form-note {
+    margin-top: 10px;
     color: var(--date-color);
+    font-style: italic;
+  }
+  
+  .alt-routes {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-left: 1px solid var(--terminal-green);
+    padding: 10px 15px;
+    margin: 20px 0;
+    border-radius: 4px;
+    opacity: 0.9;
+  }
+  
+  .route {
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .route-arrow {
+    color: var(--terminal-green);
+    margin-right: 8px;
+  }
+  
+  .route-name {
+    color: var(--terminal-purple);
+    min-width: 80px;
+    margin-right: 5px;
   }
   
   a {
@@ -97,5 +182,15 @@ import CommandPrompt from '../components/CommandPrompt.astro';
   
   a:hover {
     text-decoration: underline;
+  }
+  
+  /* Form validation messages */
+  input:invalid, textarea:invalid {
+    border-color: var(--border-color);
+  }
+  
+  input:focus:invalid, textarea:focus:invalid {
+    border-color: #e74c3c;
+    box-shadow: 0 0 0 1px #e74c3c;
   }
 </style>
