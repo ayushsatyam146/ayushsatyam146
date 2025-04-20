@@ -4,7 +4,7 @@ import alpinejs from '@astrojs/alpinejs';
 
 export default defineConfig({
   site: 'https://ayushsatyam146.github.io/ayushsatyam146',  // <- include the repo name here!
-  base: '/',  
+  base: '/ayushsatyam146',  
   integrations: [
     tailwind(),
     alpinejs()
