@@ -1,101 +1,24 @@
 ---
-import MainLayout from '../..//layouts/MainLayout.astro';
+import { getCollection } from 'astro:content';
+import MainLayout from '../../layouts/MainLayout.astro';
+import BlogPostPreview from '../../components/BlogPostPreview.astro';
+import BlogPostListPreview from '../../components/BlogPostListPreview.astro';
 import CommandPrompt from '../../components/CommandPrompt.astro';
+
+// Get all blog posts, sorted by date
+const allPosts = await getCollection('blog', ({ data }) => {
+  return import.meta.env.DEV || !data.draft;
+});
+
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
 ---
 
-<MainLayout title="About | Terminal Blog" description="About me and this blog">
-  <CommandPrompt command="cat about.md" />
-  
-  <div class="about-page">
-    <h1>About This Blog</h1>
-    
-    <div class="about-section">
-      <h2>$ whoami</h2>
-      <p>
-        blgger OPPP
-      </p>
-      <p>
-        My tech stack includes Golang, Rust, TypeScript, and various database technologies. I enjoy solving complex problems
-        and sharing what I learn along the way.
-      </p>
-    </div>
-    
-    <div class="about-section">
-      <h2>$ why-this-blog</h2>
-      <p>
-        This blog serves as a platform for me to document my learnings, experiments, and thoughts about software engineering.
-        Writing helps me clarify my thinking and hopefully provides value to others in the community.
-      </p>
-      <p>
-        The terminal theme is a nod to where many of us developers spend a significant amount of our time.
-        It's built with Astro and designed to be fast, accessible, and content-focused.
-      </p>
-    </div>
-    
-    <div class="about-section">
-      <h2>$ contact</h2>
-      <p>
-        Feel free to reach out to me through any of the following channels:
-      </p>
-      <ul class="contact-list">
-        <li><span class="contact-label">Email:</span> example@example.com</li>
-        <li><span class="contact-label">GitHub:</span> <a href="https://github.com/yourusername" target="_blank" rel="noopener">@yourusername</a></li>
-        <li><span class="contact-label">Twitter:</span> <a href="https://twitter.com/yourusername" target="_blank" rel="noopener">@yourusername</a></li>
-      </ul>
-    </div>
-  </div>
-</MainLayout>
+<MainLayout title="Blog Posts | Terminal Blog" description="List of all blog posts">
+  <CommandPrompt command="ls -la blog-posts/" />
+  <BlogPostListPreview posts={sortedPosts} />
 
-<style>
-  .about-page {
-    max-width: 700px;
-    margin: 0 auto;
-  }
-  
-  h1 {
-    color: var(--terminal-green);
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-  }
-  
-  .about-section {
-    margin-bottom: 40px;
-  }
-  
-  h2 {
-    color: var(--terminal-purple);
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-    font-weight: normal;
-  }
-  
-  p {
-    margin-bottom: 15px;
-    line-height: 1.6;
-  }
-  
-  .contact-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .contact-list li {
-    margin-bottom: 10px;
-    padding: 5px 0;
-  }
-  
-  .contact-label {
-    display: inline-block;
-    min-width: 70px;
-    color: var(--date-color);
-  }
-  
-  a {
-    color: var(--link-color);
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-</style>
+  <CommandPrompt command="cat blog-posts/*" />
+  {sortedPosts.map(post => <BlogPostPreview post={post} />)}
+</MainLayout>
