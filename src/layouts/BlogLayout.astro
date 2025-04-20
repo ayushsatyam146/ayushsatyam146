@@ -1,0 +1,109 @@
+---
+import MainLayout from './MainLayout.astro';
+import { formatDate } from '../utils/formatDate';
+
+const { frontmatter } = Astro.props;
+const formattedDate = formatDate(frontmatter.date);
+---
+
+<MainLayout title={frontmatter.title}>
+  <div class="blog-path">~/blog/{frontmatter.title.toLowerCase().replace(/\s+/g, '-')}</div>
+  
+  <article class="blog-post">
+    <h1 class="blog-post-title">{frontmatter.title}</h1>
+    <div class="blog-post-date">📅 {formattedDate}</div>
+    
+    <div class="blog-post-content">
+      <slot />
+    </div>
+    
+    <div class="blog-post-nav">
+      <a href="/" class="back-link">cd ..</a>
+    </div>
+  </article>
+</MainLayout>
+
+<style>
+  .blog-path {
+    color: var(--terminal-green);
+    margin-bottom: 20px;
+    font-size: 0.9em;
+  }
+  
+  .blog-post-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .blog-post-date {
+    color: var(--date-color);
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    background-color: var(--date-bg);
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  
+  .blog-post-content {
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+  
+  .blog-post-content :global(h2) {
+    font-size: 1.3rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  
+  .blog-post-content :global(h3) {
+    font-size: 1.1rem;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .blog-post-content :global(p) {
+    margin-bottom: 15px;
+  }
+  
+  .blog-post-content :global(ul), .blog-post-content :global(ol) {
+    margin-bottom: 15px;
+    padding-left: 20px;
+  }
+  
+  .blog-post-content :global(li) {
+    margin-bottom: 5px;
+  }
+  
+  .blog-post-content :global(pre) {
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    background-color: var(--highlight-bg);
+  }
+  
+  .blog-post-content :global(code) {
+    font-family: 'Fira Code', monospace;
+    background-color: var(--highlight-bg);
+    padding: 2px 4px;
+    border-radius: 3px;
+  }
+  
+  .blog-post-nav {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border-color);
+  }
+  
+  .back-link {
+    display: inline-block;
+    color: var(--terminal-green);
+    padding: 5px 10px;
+    border-radius: 3px;
+    background-color: var(--highlight-bg);
+  }
+</style>

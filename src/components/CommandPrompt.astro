@@ -1,0 +1,27 @@
+---
+interface Props {
+  command?: string;
+}
+
+const { command = "ls blog-posts" } = Astro.props;
+---
+
+<div class="prompt-wrapper">
+  <span class="prompt-sign">$</span>
+  <span class="prompt-command">{command}</span>
+</div>
+
+<style>
+  .prompt-wrapper {
+    margin-bottom: 15px;
+  }
+  
+  .prompt-sign {
+    color: var(--terminal-purple);
+    margin-right: 5px;
+  }
+  
+  .prompt-command {
+    color: var(--text-color);
+  }
+</style>

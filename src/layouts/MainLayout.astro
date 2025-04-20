@@ -1,0 +1,49 @@
+---
+import Header from '../components/Header.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import SearchModal from '../components/SearchModal.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  currentPath?: string;
+}
+
+const { title, description = "A terminal-styled developer blog" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header />
+    <main class="container">
+      <div class="content">
+        <div class="blog-title">~/blog</div>
+        <slot />
+      </div>
+    </main>
+    <ThemeToggle />
+    <SearchModal />
+    
+    <!-- Fuse.js for search -->
+    <script is:inline src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+  </body>
+</html>
+
+<style>
+  .blog-title {
+    color: var(--terminal-green);
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed var(--border-color);
+  }
+</style>
