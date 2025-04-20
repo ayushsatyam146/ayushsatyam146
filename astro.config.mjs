@@ -3,8 +3,8 @@ import tailwind from '@astrojs/tailwind';
 import alpinejs from '@astrojs/alpinejs';
 
 export default defineConfig({
-  site: 'https://ayushsatyam146.github.io/ayushsatyam146',  // <- include the repo name here!
-  base: '/ayushsatyam146',  
+  site: 'https://ayushsatyam146.github.io',
+  base: '/',  
   integrations: [
     tailwind(),
     alpinejs()
