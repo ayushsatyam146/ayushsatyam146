@@ -3,100 +3,111 @@ import MainLayout from '../layouts/MainLayout.astro';
 import CommandPrompt from '../components/CommandPrompt.astro';
 ---
 
-<MainLayout title="About | Terminal Blog" description="About me and this blog">
-  <CommandPrompt command="cat about.md" />
+<MainLayout title="Random Tweets | Terminal Blog" description="A random collection of tweets">
+  <CommandPrompt command="curl -s https://twitter.com/ayushsatyam146" />
   
-  <div class="about-page">
-    <h1>About This Blog</h1>
-    
-    <div class="about-section">
-      <h2>$ whoami</h2>
-      <p>
-        Hi there! I'm a software engineer passionate about distributed systems, databases, and backend development. 
-        I've been working in the tech industry for several years, primarily focusing on building scalable and reliable systems.
-      </p>
-      <p>
-        My tech stack includes Golang, Rust, TypeScript, and various database technologies. I enjoy solving complex problems
-        and sharing what I learn along the way.
-      </p>
-    </div>
-    
-    <div class="about-section">
-      <h2>$ why-this-blog</h2>
-      <p>
-        This blog serves as a platform for me to document my learnings, experiments, and thoughts about software engineering.
-        Writing helps me clarify my thinking and hopefully provides value to others in the community.
-      </p>
-      <p>
-        The terminal theme is a nod to where many of us developers spend a significant amount of our time.
-        It's built with Astro and designed to be fast, accessible, and content-focused.
-      </p>
-    </div>
-    
-    <div class="about-section">
-      <h2>$ contact</h2>
-      <p>
-        Feel free to reach out to me through any of the following channels:
-      </p>
-      <ul class="contact-list">
-        <li><span class="contact-label">Email:</span> example@example.com</li>
-        <li><span class="contact-label">GitHub:</span> <a href="https://github.com/yourusername" target="_blank" rel="noopener">@yourusername</a></li>
-        <li><span class="contact-label">Twitter:</span> <a href="https://twitter.com/yourusername" target="_blank" rel="noopener">@yourusername</a></li>
-      </ul>
+  <div class="tweets-container">
+    <div class="tweet-collage">
+      <div class="tweet-column">
+        <blockquote class="twitter-tweet" data-theme="dark">
+          <p lang="en" dir="ltr">Loading tweet...</p>
+          <a href="https://twitter.com/ayushsatyam146/status/1887408967548018827"></a>
+        </blockquote>
+        
+        <blockquote class="twitter-tweet" data-theme="dark">
+          <p lang="en" dir="ltr">Loading tweet...</p>
+          <a href="https://twitter.com/ayushsatyam146/status/1866372412746678328"></a>
+        </blockquote>
+        
+        <blockquote class="twitter-tweet" data-theme="dark">
+          <p lang="en" dir="ltr">Loading tweet...</p>
+          <a href="https://twitter.com/ayushsatyam146/status/1884495730053898257"></a>
+        </blockquote>
+      </div>
+      
+      <div class="tweet-column">
+        <blockquote class="twitter-tweet" data-theme="dark">
+          <p lang="en" dir="ltr">Loading tweet...</p>
+          
+          <a href="https://twitter.com/ayushsatyam146/status/1860311309335544085"></a>
+        </blockquote>
+        
+        <blockquote class="twitter-tweet" data-theme="dark">
+          <p lang="en" dir="ltr">Loading tweet...</p>
+          <a href="https://twitter.com/ayushsatyam146/status/1861929273247879317"></a>
+        </blockquote>
+        
+        <blockquote class="twitter-tweet" data-theme="dark">
+          <p lang="en" dir="ltr">Loading tweet...</p>
+          <a href="https://twitter.com/ayushsatyam146/status/1752374458369945950"></a>
+        </blockquote>
+      </div>
     </div>
   </div>
 </MainLayout>
 
 <style>
-  .about-page {
-    max-width: 700px;
-    margin: 0 auto;
-  }
-  
   h1 {
     color: var(--terminal-green);
     font-size: 1.8rem;
     margin-bottom: 30px;
   }
   
-  .about-section {
-    margin-bottom: 40px;
+  .tweets-container {
+    max-width: 1200px;
+    margin: 0 auto;
   }
   
-  h2 {
-    color: var(--terminal-purple);
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-    font-weight: normal;
+  .tweet-collage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
   }
   
-  p {
-    margin-bottom: 15px;
-    line-height: 1.6;
+  .tweet-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
   }
   
-  .contact-list {
-    list-style: none;
+  .twitter-tweet {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
     padding: 0;
+    border-left: 3px solid var(--terminal-blue);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    margin: 0 !important;
+    overflow: hidden;
   }
   
-  .contact-list li {
-    margin-bottom: 10px;
-    padding: 5px 0;
+  .twitter-tweet:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 10;
   }
   
-  .contact-label {
-    display: inline-block;
-    min-width: 70px;
-    color: var(--date-color);
+  /* Dark mode adjustment */
+  :global(.dark-theme) .twitter-tweet {
+    background-color: rgba(255, 255, 255, 0.05);
   }
   
-  a {
-    color: var(--link-color);
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
+  /* Mobile view - single column */
+  @media (max-width: 767px) {
+    .tweet-collage {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
+
+<script is:inline>
+  window.onload = function() {
+    // Load Twitter widgets script
+    const script = document.createElement('script');
+    script.src = 'https://platform.twitter.com/widgets.js';
+    script.async = true;
+    script.charset = 'utf-8';
+    document.body.appendChild(script);
+  };
+</script>

@@ -7,41 +7,42 @@ import CommandPrompt from '../components/CommandPrompt.astro';
   <CommandPrompt command="cat about.md" />
   
   <div class="about-page">
-    <h1>About This Blog</h1>
+    <!-- <h1>About This Blog</h1> -->
     
     <div class="about-section">
-      <h2>$ whoami</h2>
+      <h2 class="terminal-link"><a href="/whoami">~/whoami</a></h2> 
       <p>
-        Hi there! I'm a software engineer passionate about distributed systems, databases, and backend development. 
-        I've been working in the tech industry for several years, primarily focusing on building scalable and reliable systems.
+        Hi, I'm Ayush Satyam — a Software Engineer, Tinkerer, and Explorer at heart.
+        Currently, I work at Red Hat as a Software Engineer II, where I get to build, understand and tinker with systems every day.
       </p>
       <p>
-        My tech stack includes Golang, Rust, TypeScript, and various database technologies. I enjoy solving complex problems
-        and sharing what I learn along the way.
+        Nothing excites me more than diving one level deeper than I'm "supposed to" — whether it's databases, file systems, compilers, networking, or distributed systems (where the real fun begins). I love chasing the "why" and "how" behind the tech.
+      </p>
+      <p>
+        Stagnation — doing the same things without questioning — is my worst nightmare.
+        I don't like labelling myself as "Frontend," "Backend," "Full Stack," or even "Systems Engineer." 
+        I just follow the lead of my curiosity and interests which has helped me explore a broad spectrum across frontend development, backend engineering, systems programming, databases, and cloud-native software — always striving to be a generalist with deep curiosity.
       </p>
     </div>
     
     <div class="about-section">
-      <h2>$ why-this-blog</h2>
+      <h1> Why this blog?</h2>
       <p>
         This blog serves as a platform for me to document my learnings, experiments, and thoughts about software engineering.
-        Writing helps me clarify my thinking and hopefully provides value to others in the community.
-      </p>
-      <p>
-        The terminal theme is a nod to where many of us developers spend a significant amount of our time.
-        It's built with Astro and designed to be fast, accessible, and content-focused.
+        I will also add the books and papers I read and probably my notes on them here.
       </p>
     </div>
     
     <div class="about-section">
-      <h2>$ contact</h2>
+      <h2 class="terminal-link"><a href="/ping">~/ping</a></h2> 
       <p>
-        Feel free to reach out to me through any of the following channels:
+        Feel free to reach out to me through any of the following channels or just <a href="/ping" class="highlight-link">ping me here</a>:
       </p>
       <ul class="contact-list">
-        <li><span class="contact-label">Email:</span> example@example.com</li>
-        <li><span class="contact-label">GitHub:</span> <a href="https://github.com/yourusername" target="_blank" rel="noopener">@yourusername</a></li>
-        <li><span class="contact-label">Twitter:</span> <a href="https://twitter.com/yourusername" target="_blank" rel="noopener">@yourusername</a></li>
+        <li><span class="contact-label">Email:</span> <a href="mailto:ayushsatyam146@gmail.com" target="_blank" rel="noopener">ayushsatyam146@gmail.com</a></li>
+        <li><span class="contact-label">GitHub:</span> <a href="https://github.com/ayushsatyam146" target="_blank" rel="noopener">@ayushsatyam146</a></li>
+        <li><span class="contact-label">Twitter:</span> <a href="https://twitter.com/ayushsatyam146" target="_blank" rel="noopener">@ayushsatyam146</a></li>
+        <li><span class="contact-label">LinkedIn:</span> <a href="https://www.linkedin.com/in/ayushsatyam146" target="_blank" rel="noopener">@ayushsatyam146</a></li>
       </ul>
     </div>
   </div>
@@ -68,6 +69,15 @@ import CommandPrompt from '../components/CommandPrompt.astro';
     font-size: 1.3rem;
     margin-bottom: 15px;
     font-weight: normal;
+  }
+  
+  .terminal-link a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .terminal-link a:hover {
+    text-decoration: underline;
   }
   
   p {

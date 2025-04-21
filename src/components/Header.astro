@@ -12,9 +12,10 @@ const currentPath = Astro.url.pathname;
     <nav class="terminal-nav">
       <a href="/" class={`command ${currentPath === '/' ? 'active' : ''}`}>cd ~</a>
       <a href="/blog" class={`command ${currentPath.startsWith('/blog') ? 'active' : ''}`}>cd ~/blog</a>
-      <a href="/random" class={`command ${currentPath === '/tools/random' ? 'active' : ''}`}>rand</a>
+      <a href="/random" class={`command ${currentPath === '/random' ? 'active' : ''}`}>rand</a>
       <a href="/whoami" class={`command ${currentPath === '/whoami' ? 'active' : ''}`}>whoami</a>
       <a href="/ping" class={`command ${currentPath === '/ping' ? 'active' : ''}`}>ping</a>
+      <a href="/assets/resume/Ayush_Satyam.pdf" target="_blank" rel="noopener noreferrer" class="command">cd ~/resume</a>
     </nav>
     <span class="prompt">$</span>
     <button id="search-button" class="search-button">
